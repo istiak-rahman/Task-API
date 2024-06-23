@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Taskr - Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome to your tasks!</h1>
+      <br>
+      <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Due Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+                <tr>
+                    <td>{{ task.title }}</td>
+                    <td>{{ task.description }}</td>
+                    <td>{{ task.due_date }}</td>
+                    <td><a href="{{ url_for('delete_tasks', id=task.id) }}" class="btn btn-danger">Delete Task</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+      <br>
+      <p>Click <a href="/logout">here</a> to logout.</p>
+      <br>
+      <p>Click <a href="/create-tasks">here</a> to add a new task.</p>
+      {% for message in get_flashed_messages() %}
+        {{ message }}
+      {% endfor %}
+    </div>
+  </body>
+</html>
