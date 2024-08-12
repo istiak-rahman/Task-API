@@ -16,7 +16,6 @@ def login_required(f):
             return redirect(url_for('login'))
     return wrap
 
-# Define your routes and functions here
 # Login required to access main page
 @app.route('/')
 @login_required
